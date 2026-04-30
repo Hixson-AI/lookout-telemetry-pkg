@@ -13,6 +13,7 @@ export interface TelemetryConfig {
   environment?: string;
   deploymentProfile?: string;
   component?: string;
+  tenantId?: string;
   traceExporterUrl?: string;
   metricExporterUrl?: string;
 }
@@ -33,6 +34,7 @@ export function initTelemetry(config: TelemetryConfig): NodeSDK {
       [SemanticResourceAttributes.SERVICE_VERSION]: config.serviceVersion || 'unknown',
       'deployment.environment': config.environment || process.env.NODE_ENV || 'production',
       'deployment.profile': config.deploymentProfile || process.env.DEPLOYMENT_PROFILE || 'unknown',
+      'tenant.id': config.tenantId || process.env.TENANT_ID || 'unknown',
       'component': config.component || process.env.LOG_COMPONENT || 'unknown',
       'git.sha': process.env.GIT_SHA || 'unknown',
     })

@@ -1,6 +1,6 @@
 {
   "name": "@lookout/telemetry",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Lookout Platform Telemetry - Metrics auto-instrumentation and OpenTelemetry setup",
   "type": "module",
   "main": "dist/index.js",

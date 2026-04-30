@@ -22,6 +22,7 @@ initTelemetry({
   environment: 'production',
   deploymentProfile: 'production',
   component: 'api',
+  tenantId: 'tenant-123', // Optional: for tenant-scoped observability
   traceExporterUrl: 'http://lookout-telemetry.internal:4317',
   metricExporterUrl: 'http://lookout-telemetry.internal:4317',
 });
@@ -43,6 +44,7 @@ const registry = getMetricsRegistry({
   defaultLabels: {
     service: 'my-service',
     environment: 'production',
+  tenantId: 'tenant-123', // Optional: for tenant-scoped metrics
   },
 });
 
@@ -71,6 +73,7 @@ The package automatically reads these environment variables:
 
 - `NODE_ENV`: Application environment (default: production)
 - `DEPLOYMENT_PROFILE`: Deployment profile (default: unknown)
+- `TENANT_ID`: Tenant ID for tenant-scoped observability (default: unknown)
 - `LOG_COMPONENT`: Component name (default: unknown)
 - `GIT_SHA`: Git commit SHA (default: unknown)
 

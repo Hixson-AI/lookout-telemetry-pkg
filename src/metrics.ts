@@ -2,6 +2,7 @@ import * as promClient from 'prom-client';
 
 export interface MetricsConfig {
   defaultLabels?: Record<string, string>;
+  tenantId?: string;
 }
 
 /**
@@ -13,8 +14,13 @@ export class MetricsRegistry {
   constructor(config?: MetricsConfig) {
     this.registry = new promClient.Registry();
     
-    if (config?.defaultLabels) {
-      this.registry.setDefaultLabels(config.defaultLabels);
+    const labels = config?.defaultLabels || {};
+    if (config?.tenantId) {
+      labels.tenant_id = config.tenantId;
+    }
+    
+    if (Object.keys(labels).length > 0) {
+      this.registry.setDefaultLabels(labels);
     }
 
     // Default metrics (process, GC, etc.)
